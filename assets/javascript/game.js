@@ -3,21 +3,17 @@ var currentWordText = document.getElementById("current-word-text");
 var guessesRemainingText = document.getElementById("guesses-remaining-text");
 var alreadyGuessedText = document.getElementById("already-guessed-text");
 var endGameText = document.getElementById("end-game-text");
+var playAgainBtn = document.getElementById("play-again-btn");
 
 // Array of possible words to guess
 var words = ["cat", "dog", "tiger", "moose"];
-var guessedLetters = [];
-var numGuessesRemaining = 13;
-var numCorrect = 0;
-var gameReady = true;
 
-// Choose a word randomly
-var theWord = words[Math.floor(Math.random() * words.length)];
-console.log("The correct word is: " + theWord);
+// Copy the array to keep track of which words were already played
+var unplayedWords = words.slice();
 
-// Display the length of the word with dashes
-currentWordText.textContent = theWord.replace(/[a-z]/ig, "-")
-guessesRemainingText.textContent = numGuessesRemaining;
+// Declare variables and initialize the game
+var guessedLetters, numGuessesRemaining, numCorrect, gameReady, theWord;
+restartGame();
 
 // This function is run when a key is pressed
 document.onkeyup = function(event) {
@@ -48,6 +44,7 @@ document.onkeyup = function(event) {
                     // Check if the user has won
                     if (numCorrect === theWord.length) {
                         endGameText.textContent = "You Win!"
+                        playAgainBtn.style.visibility = "visible";
                         gameReady = false;
                     }
                 } else {
@@ -59,10 +56,41 @@ document.onkeyup = function(event) {
                     guessesRemainingText.textContent = numGuessesRemaining;
                     if (numGuessesRemaining === 0) {
                         endGameText.textContent = "You Lose."
+                        playAgainBtn.style.visibility = "visible";
                         gameReady = false;
                     }
                 }
             }
         }
     }
+}
+
+function restartGame() {
+    // Reset variables
+    guessedLetters = [];
+    numGuessesRemaining = 13;
+    numCorrect = 0;
+    gameReady = true;
+
+    // If all of the words have been played, then re-add all the words
+    if(unplayedWords.length === 0) {
+        unplayedWords = words.slice();
+    }
+    
+    // Choose a word randomly
+    iWord = Math.floor(Math.random() * unplayedWords.length)
+    theWord = unplayedWords[iWord];
+    console.log("The correct word is: " + theWord);
+
+    // Remove the word from the array
+    unplayedWords.splice(iWord, 1);
+
+    // Display the length of the word with dashes
+    currentWordText.textContent = theWord.replace(/[a-z]/ig, "-");
+
+    // Reset other text
+    guessesRemainingText.textContent = numGuessesRemaining;
+    alreadyGuessedText.textContent = "";
+    endGameText.textContent = "";
+    playAgainBtn.style.visibility = "hidden";
 }
