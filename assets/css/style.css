@@ -16,6 +16,7 @@ body {
 #main-body {
     text-align: center;
     margin-top: 50px;
+    color: white;
     background-color: rgba(163, 4, 4, 0.7);
     background-blend-mode: multiply;
 }
@@ -24,23 +25,50 @@ body {
     text-align: center;
     font-family: 'Pokemon';
     font-weight: 800;
-    font-size: 100px;
+    font-size: 6rem;
     color: yellow;
 }
 
 #main-body h2{
-    color: white;
+    font-family: 'Droid Sans Mono';
+    font-size: 5rem;
+    letter-spacing: 1.5rem;
 }
 
 #main-body h3 {
-    color: white;
+    text-align: left;
+    font-family: 'Droid Sans Mono';
+    font-size: 4rem;
+    letter-spacing: 3rem;
+    line-height: 6rem;
+    margin: 0 0 0 30px;
+}
+
+#main-body h4 {
+    font-size: 2rem;
 }
 
 #main-body .card {
     background-color: rgba(94, 3, 3, 0.8);
 }
 
+#word-image {
+    margin: 30px;
+    height: 300px;
+}
+
+#play-again-btn {
+    margin: 10px;
+    font-size: 1.5rem;
+    visibility: hidden;
+}
+
 @font-face {
-    font-family: Pokemon;
+    font-family: 'Pokemon';
     src: url(../fonts/Pokemon-Hollow.ttf);
+}
+
+@font-face {
+    font-family: 'Droid Sans Mono';
+    src: url(../fonts/DroidSansMono.ttf);
 }

@@ -1,18 +1,20 @@
 // Get reference to HTML items
 var currentWordText = document.getElementById("current-word-text");
 var guessesRemainingText = document.getElementById("guesses-remaining-text");
+var winsText = document.getElementById("wins-text");
 var alreadyGuessedText = document.getElementById("already-guessed-text");
-var endGameText = document.getElementById("end-game-text");
+var instructionsText = document.getElementById("instructions-text");
 var playAgainBtn = document.getElementById("play-again-btn");
 
 // Array of possible words to guess
-var words = ["cat", "dog", "tiger", "moose"];
+var words = ["PIKACHU", "VENUSAUR", "CHARIZARD", "BLASTOISE"];
 
 // Copy the array to keep track of which words were already played
 var unplayedWords = words.slice();
 
 // Declare variables and initialize the game
 var guessedLetters, numGuessesRemaining, numCorrect, gameReady, theWord;
+var wins = 0;
 restartGame();
 
 // This function is run when a key is pressed
@@ -23,7 +25,7 @@ document.onkeyup = function(event) {
 
         // Check if the key is a letter from a-z
         if(guess.length === 1 && guess.match(/[a-z]/i)) {
-            guess = guess.toLowerCase();
+            guess = guess.toUpperCase();
 
             // Check if the letter has already been guessed
             if(guessedLetters.indexOf(guess) === -1) {
@@ -43,19 +45,21 @@ document.onkeyup = function(event) {
 
                     // Check if the user has won
                     if (numCorrect === theWord.length) {
-                        endGameText.textContent = "You Win!"
+                        wins++;
+                        winsText.textContent = wins;
+                        instructionsText.textContent = "A wild " + theWord + " appeared!"
                         playAgainBtn.style.visibility = "visible";
                         gameReady = false;
                     }
                 } else {
                     // Add the letter to the list of incorrect guesses
-                    alreadyGuessedText.textContent = alreadyGuessedText.textContent + " " + guess;
+                    alreadyGuessedText.textContent = alreadyGuessedText.textContent + guess;
 
                     // Check if the user has lost
                     numGuessesRemaining--;
                     guessesRemainingText.textContent = numGuessesRemaining;
                     if (numGuessesRemaining === 0) {
-                        endGameText.textContent = "You Lose."
+                        instructionsText.textContent = "Oh no! The wild " + theWord + " fled!" 
                         playAgainBtn.style.visibility = "visible";
                         gameReady = false;
                     }
@@ -90,7 +94,8 @@ function restartGame() {
 
     // Reset other text
     guessesRemainingText.textContent = numGuessesRemaining;
+    winsText.textContent = wins;
     alreadyGuessedText.textContent = "";
-    endGameText.textContent = "";
+    instructionsText.textContent = "Fill in the letters to reveal the Pokemon! Press any key to get started...";
     playAgainBtn.style.visibility = "hidden";
 }
