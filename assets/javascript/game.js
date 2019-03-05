@@ -85,8 +85,8 @@ function restartGame() {
     // Remove the word from the array
     unplayedWords.splice(iWord, 1);
 
-    // Display the length of the word with dashes
-    currentWordText.textContent = theWord.replace(/[a-z]/ig, "-");
+    // Display the length of the word with underscores
+    currentWordText.textContent = theWord.replace(/[a-z]/ig, "_");
 
     // Reset other text
     guessesRemainingText.textContent = numGuessesRemaining;

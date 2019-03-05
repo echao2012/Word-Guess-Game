@@ -12,16 +12,75 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
+    <!-- Link font -->
+
+
     <!-- Link my custom style.css -->
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
 </head>
 <body>
     <div class="container">
         <div class="row">
-            <div class="col-md-offset-2 col-md-8">
-                <h2>Current Word: <span id="current-word-text"></span></h2>
-                <h2>Number of Guesses Remaining: <span id="guesses-remaining-text"></span></h2>
-                <h2>Letters Already Guessed: <span id="already-guessed-text"></span></h2>
+            <div class="col-lg-12">
+                <div class="card" id="main-body">
+                    <div class="card-body">
+                        <!-- Title -->
+                        <h1 class="card-title">Who's that Pokémon?</h1>
+
+                        <!-- Pokemon image -->
+                        <img src="https://place-hold.it/400x400">
+
+                        <!-- Instructions -->
+                        <h3 class="card-subtitle mb-2">Fill in the letters to reveal the Pokemon! Press any key to get started...</h3>
+
+                        <!-- Current word being guessed -->
+                        <div class="card mt-3">
+                            <div class="card-body">
+                                <h2><span id="current-word-text"></span></h2>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <!-- Guessed letters that were incorrect -->
+                            <div class="col-lg-9 mb-3">
+                                <div class="card h-100 mt-3">
+                                    <div class="card-body">
+                                        <h3>Incorrect Letters: <span id="already-guessed-text"></span></h3>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-3">
+                                <!-- Guesses remaining -->
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <div class="card mt-3">
+                                            <div class="card-body">
+                                                <h3>Guesses Remaining</h3>
+                                                <h3><span id="guesses-remaining-text"></span></h3>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Number of wins -->
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <div class="card mt-3">
+                                            <div class="card-body">
+                                                <h3>Wins</h3>
+                                                <h3><span id="wins-text">0</span></h3>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-8">
                 <h2><span id="end-game-text"></span></h2>
                 <button id="play-again-btn" type="button" class="btn btn-primary" onclick="restartGame()">Play Again</button>
             </div>
