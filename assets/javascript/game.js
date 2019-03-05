@@ -5,9 +5,14 @@ var winsText = document.getElementById("wins-text");
 var alreadyGuessedText = document.getElementById("already-guessed-text");
 var instructionsText = document.getElementById("instructions-text");
 var playAgainBtn = document.getElementById("play-again-btn");
+var wordImg = document.getElementById("word-image");
 
 // Array of possible words to guess
-var words = ["PIKACHU", "VENUSAUR", "CHARIZARD", "BLASTOISE"];
+var words = ["BULBASAUR", "IVYSAUR", "VENUSAUR", "CHARMANDER", "CHARMELEON", "CHARIZARD", "SQUIRTLE", "WARTORTLE", "BLASTOISE", "CATERPIE", 
+    "METAPOD", "BUTTERFREE", "WEEDLE", "KAKUNA", "BEEDRILL", "PIDGEY", "PIDGEOTTO", "PIDGEOT", "RATTATA", "RATICATE", "SPEAROW", "FEAROW", 
+    "EKANS", "ARBOK", "PIKACHU", "RAICHU"];
+
+
 
 // Copy the array to keep track of which words were already played
 var unplayedWords = words.slice();
@@ -45,11 +50,7 @@ document.onkeyup = function(event) {
 
                     // Check if the user has won
                     if (numCorrect === theWord.length) {
-                        wins++;
-                        winsText.textContent = wins;
-                        instructionsText.textContent = "A wild " + theWord + " appeared!"
-                        playAgainBtn.style.visibility = "visible";
-                        gameReady = false;
+                        gameOver(true);
                     }
                 } else {
                     // Add the letter to the list of incorrect guesses
@@ -59,14 +60,38 @@ document.onkeyup = function(event) {
                     numGuessesRemaining--;
                     guessesRemainingText.textContent = numGuessesRemaining;
                     if (numGuessesRemaining === 0) {
-                        instructionsText.textContent = "Oh no! The wild " + theWord + " fled!" 
-                        playAgainBtn.style.visibility = "visible";
-                        gameReady = false;
+                        gameOver(false);
                     }
                 }
             }
         }
     }
+}
+
+function gameOver(win) {
+    if(win) {
+        // Increase the wins counter and display it
+        wins++;
+        winsText.textContent = wins;
+
+        // Show the Pokemon image
+        wordImg.src = "assets/images/" + theWord + ".png";
+
+        // Show win message
+        instructionsText.textContent = "A wild " + theWord + " appeared!";
+    } else {
+        // Show the fleeing image
+        wordImg.src = "assets/images/smoke.png";
+
+        // Show the lose message
+        instructionsText.textContent = "Oh no! The wild " + theWord + " fled!";
+    }
+
+    // Show the play again button
+    playAgainBtn.style.visibility = "visible";
+
+    // Ignore key presses until the play again button is clicked
+    gameReady = false;
 }
 
 function restartGame() {
@@ -98,4 +123,5 @@ function restartGame() {
     alreadyGuessedText.textContent = "";
     instructionsText.textContent = "Fill in the letters to reveal the Pokemon! Press any key to get started...";
     playAgainBtn.style.visibility = "hidden";
+    wordImg.src = "assets/images/question_mark.png"
 }
