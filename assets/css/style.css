@@ -16,10 +16,13 @@ body {
 #main-body {
     text-align: center;
     margin-top: 50px;
+    margin-bottom: 50px;
     color: white;
     background-color: rgba(163, 4, 4, 0.7);
     background-blend-mode: multiply;
 }
+
+/* Title */
 
 #main-body h1 {
     text-align: center;
@@ -29,11 +32,15 @@ body {
     color: yellow;
 }
 
+/* Word being guessed */
+
 #main-body h2{
     font-family: 'Droid Sans Mono';
     font-size: 5rem;
     letter-spacing: 1.5rem;
 }
+
+/* Incorrect letters */
 
 #main-body h3 {
     text-align: left;
@@ -44,8 +51,14 @@ body {
     margin: 0 0 0 30px;
 }
 
+/* All other text */
+
 #main-body h4 {
     font-size: 2rem;
+}
+
+#instructions-text {
+    min-height: 76px;
 }
 
 #main-body .card {
@@ -54,14 +67,21 @@ body {
 
 #word-image {
     margin: 30px;
-    height: 300px;
+    max-height: 300px;
+    width: auto;
 }
 
 #play-again-btn {
-    margin: 10px;
+    margin: 5px;
     font-size: 1.5rem;
     visibility: hidden;
 }
+
+.incorrect-card {
+    min-height: 216px;
+}
+
+/* Custom font */
 
 @font-face {
     font-family: 'Pokemon';
@@ -71,4 +91,88 @@ body {
 @font-face {
     font-family: 'Droid Sans Mono';
     src: url(../fonts/DroidSansMono.ttf);
+}
+
+@media screen and (min-width: 993px) and (max-width: 1200px) {
+    /* Title */
+
+    #main-body h1 {
+        font-size: 5rem;
+    }
+
+    /* Word being guessed */
+
+    #main-body h2 {
+        font-size: 4rem;
+    }
+
+    #main-body h3 {
+        font-size: 3rem;
+    }
+}
+
+@media screen and (min-width: 768px) and (max-width: 992px) {
+    /* Title */
+
+    #main-body h1 {
+        font-size: 3.5rem;
+    }
+
+    /* Word being guessed */
+
+    #main-body h2 {
+        font-size: 3rem;
+    }
+
+    /* Incorrect letters */
+
+    #main-body h3 {
+        font-size: 2rem;
+        line-height: 4rem;
+    }
+
+    #word-image {
+        max-height: 200px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    /* Title */
+
+    #main-body h1 {
+        font-size: 2rem;
+    }
+
+    /* Word being guessed */
+
+    #main-body h2 {
+        font-size: 1rem;
+        letter-spacing: 1rem;
+    }
+
+    /* Incorrect letters */
+
+    #main-body h3 {
+        font-size: 1rem;
+        letter-spacing: 1.5rem;
+        line-height: 4rem;
+    }
+
+    /* All other text */
+
+    #main-body h4 {
+        font-size: 1rem;
+    }
+    
+    #instructions-text {
+        min-height: 38px;
+    }
+
+    #word-image {
+        max-height: 150px;
+    }
+
+    #play-again-btn {
+        font-size: 1rem;
+    }
 }

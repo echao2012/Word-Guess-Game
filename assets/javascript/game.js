@@ -75,7 +75,7 @@ function gameOver(win) {
         winsText.textContent = wins;
 
         // Show the Pokemon image
-        wordImg.src = "assets/images/" + theWord + ".png";
+        wordImg.src = "assets/images/" + theWord.charAt(0) + theWord.slice(1).toLowerCase() + ".png";
 
         // Show win message
         instructionsText.textContent = "A wild " + theWord + " appeared!";
